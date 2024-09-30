@@ -2,23 +2,30 @@ import { useEffect, useState } from "react";
 
 export default function App() {
   
-  const [??,??] = useState([]);
+  const [buscarUsuario, setbuscarUsuario] = useState([]);
 
   useEffect(() => { 
 
-    const buscarUsuario  = async () => {
-                    = await fetch('');
-        const dados =                ;
-        setUsuario(dados);
+    const buscarUsuarioo = async () => {
+      const resposta = await fetch('https://jsonplaceholder.typicode.com/todos');
+        const dados = resposta.json();
+        setBuscarUsuario(dados);
     }
     buscarUsuario();
-  }, //complete o código);
+  }, []);
 
   return (
     <>
-      <h1>Usuário</h1>
+      <h1>Buscar Usuário</h1>
       <ul>
-        {}
+      {
+        buscarUsuario.map((buscarUsuario)=>
+        <div key={buscarUsuario.id}>
+        <p>{buscarUsuario.title}</p>
+        <p>{buscarUsuario.completed}</p>
+          </div>
+        )
+      }
       </ul>
     </>
   );
